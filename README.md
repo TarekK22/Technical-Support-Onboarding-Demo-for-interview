@@ -21,7 +21,7 @@
 Open the sections below to read the full markdown guides right here on the homepage.
 
 <details>
-<summary>▶ CLICK TO EXPAND: New Practice Onboarding Guide`</summary>
+<summary>▶ CLICK TO EXPAND: New Practice Onboarding Guide</summary>
 
 ## Welcome to Kasper — New Practice Onboarding Guide
 
@@ -320,7 +320,7 @@ When contacting support, include: the patient name or account number (if patient
 </details>
 
 <details>
-<summary>▶ CLICK TO EXPAND: Technical Support Troubleshooting Reference`</summary>
+<summary>▶ CLICK TO EXPAND: Technical Support Troubleshooting Reference</summary>
 
 ## Kasper Support Troubleshooting Reference
 
