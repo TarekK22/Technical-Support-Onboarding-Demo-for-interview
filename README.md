@@ -1,6 +1,5 @@
 # Kasper Technical Support & Onboarding Portfolio
 
-
 This repository contains my mock onboarding documentation and technical troubleshooting reference sheet for the Kasper platform. 
 
 ### 🌐 Live Interactive Dashboards
@@ -8,21 +7,19 @@ This repository contains my mock onboarding documentation and technical troubles
 * [Launch Live Technical Support Troubleshooting Reference (HTML Render)](https://htmlpreview.github.io/?https://github.com/TarekK22/Technical-Support-Onboarding-Demo-for-interview/blob/main/examples/KasperSupportReference.html)
 
 ---
+
 Click on the sections below to expand and read the full guides right here on the homepage.
 
 <details>
 <summary><b>Click to expand: New Practice Onboarding Guide</b></summary>
 
-ONBOARDING GUIDE
+## Welcome to Kasper — New Practice Onboarding Guide
 
 *Written as a Kasper onboarding specialist welcoming a new dental practice to the platform.*
 
 ---
 
-# Welcome to Kasper
-### New Practice Onboarding Guide
-
----
+Welcome aboard. This guide covers everything you need to get your practice running on Kasper — from connecting Open Dental to making your first phone call through the system. We'll move through setup in the order that matters: foundation first, then communication, then supervision and revenue tools.
 
 Before we start: Kasper syncs with Open Dental in real time. Every action you take in Kasper writes back to Open Dental automatically. You will not need to enter anything twice.
 
@@ -315,9 +312,7 @@ When contacting support, include: the patient name or account number (if patient
 <details>
 <summary><b>Click to expand: Technical Support Troubleshooting Reference</b></summary>
 
-### Kasper Support Troubleshooting Reference
-
-# Kasper Support Troubleshooting Reference
+## Kasper Support Troubleshooting Reference
 
 This guide covers common issues, what probably caused them, and the steps to fix them. Since everything in Kasper syncs with Open Dental, most of these issues are usually just setup mistakes or bad data inside Open Dental, not an issue with Kasper itself.
 
