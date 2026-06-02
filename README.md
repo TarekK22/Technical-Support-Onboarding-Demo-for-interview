@@ -1,12 +1,12 @@
 # Kasper Technical Support & Onboarding Portfolio
 
-## Disclaimer
+# Disclaimer
 
 This repository is a mock onboarding and support exercise created for portfolio purposes.
 
 While based on researched information about Kasper, some features, workflows, support scenarios, and operational details are hypothetical and were created to demonstrate documentation and troubleshooting skills. This content should not be considered official Kasper documentation.
 
-
+---
 This repository contains my mock onboarding documentation and technical troubleshooting reference sheet for the Kasper platform. 
 
 ### 🌐 Live Interactive Dashboards
