@@ -9,7 +9,6 @@
 > While based on researched information about Kasper, some features, workflows, support scenarios, and operational details are hypothetical and were created to demonstrate documentation and troubleshooting skills. This content should not be considered official Kasper documentation.
 
 ---
-This repository contains my mock onboarding documentation and technical troubleshooting reference sheet for the Kasper platform. 
 
 ### 🌐 Live Interactive Dashboards
 * [Launch Live New Practice Onboarding Guide (HTML Render)](https://htmlpreview.github.io/?https://github.com/TarekK22/Technical-Support-Onboarding-Demo-for-interview/blob/main/examples/KasperOnboardingIntro.html)
