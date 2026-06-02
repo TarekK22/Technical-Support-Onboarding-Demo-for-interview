@@ -321,7 +321,7 @@ When contacting support, include: the patient name or account number (if patient
 </details>
 
 <details>
-<summary>`▶ CLICK TO EXPAND: Technical Support Troubleshooting Reference`</summary>
+<summary>▶ CLICK TO EXPAND: Technical Support Troubleshooting Reference`</summary>
 
 ## Kasper Support Troubleshooting Reference
 
