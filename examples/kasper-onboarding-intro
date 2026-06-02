@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Getting Started with Kasper — New Staff Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --k-purple: #534AB7;
+    --k-purple-light: #EEEDFE;
+    --k-purple-mid: #AFA9EC;
+    --k-teal: #1D9E75;
+    --k-teal-light: #E1F5EE;
+    --k-teal-mid: #5DCAA5;
+    --k-amber: #BA7517;
+    --k-amber-light: #FAEEDA;
+    --k-gray-light: #F4F3EF;
+    --k-gray-mid: #B4B2A9;
+    --k-gray-dark: #444441;
+    --k-text: #1C1B18;
+    --k-text-muted: #5F5E5A;
+    --k-border: #D3D1C7;
+    --k-white: #FFFFFF;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    color: var(--k-text);
+    background: var(--k-white);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  .site-header {
+    background: var(--k-purple);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .header-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .header-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+  .header-brand span { color: var(--k-teal-mid); }
+  .header-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .hero {
+    background: var(--k-purple-light);
+    border-bottom: 1px solid var(--k-purple-mid);
+    padding: 4rem 2rem 3rem;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; }
+  .hero-eyebrow {
+    display: inline-block;
+    background: var(--k-purple);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    line-height: 1.2;
+    color: var(--k-text);
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--k-purple); }
+  .hero-subtitle {
+    font-size: 17px;
+    color: var(--k-text-muted);
+    max-width: 600px;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+  .hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .meta-chip { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--k-gray-dark); }
+  .meta-chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--k-teal); flex-shrink: 0; }
+
+  .toc-bar {
+    background: var(--k-gray-light);
+    border-bottom: 1px solid var(--k-border);
+    overflow-x: auto;
+  }
+  .toc-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+  }
+  .toc-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0.75rem 1rem;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--k-text-muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .toc-link:hover { color: var(--k-purple); border-bottom-color: var(--k-purple-mid); }
+  .toc-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--k-purple);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  .page-body {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .sidebar { position: sticky; top: 80px; }
+  .sidebar-card {
+    background: var(--k-gray-light);
+    border: 1px solid var(--k-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .sidebar-card h4 {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--k-text-muted);
+    margin-bottom: 0.75rem;
+  }
+  .tip-list { list-style: none; margin-top: 0.5rem; }
+  .tip-list li {
+    font-size: 13px;
+    color: var(--k-text-muted);
+    padding: 4px 0;
+    display: flex;
+    gap: 7px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .tip-list li::before { content: '→'; color: var(--k-teal); font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+  .contact-row { display: flex; flex-direction: column; gap: 6px; }
+  .contact-item { font-size: 13px; color: var(--k-text-muted); }
+  .contact-item a { color: var(--k-purple); text-decoration: none; }
+
+  .content-main { min-width: 0; }
+  .section { margin-bottom: 3.5rem; scroll-margin-top: 90px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--k-border);
+  }
+  .section-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--k-purple);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    letter-spacing: -0.3px;
+    color: var(--k-text);
+    font-weight: 400;
+  }
+  .section p { font-size: 15.5px; color: var(--k-text); margin-bottom: 1rem; line-height: 1.75; }
+  .section p:last-child { margin-bottom: 0; }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
+    margin: 1.5rem 0;
+  }
+  .feature-card {
+    background: var(--k-white);
+    border: 1px solid var(--k-border);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    transition: border-color 0.15s;
+  }
+  .feature-card:hover { border-color: var(--k-purple-mid); }
+  .feature-card-icon {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: var(--k-purple-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.6rem;
+    font-size: 16px;
+  }
+  .feature-card h3 { font-size: 14px; font-weight: 500; color: var(--k-text); margin-bottom: 4px; }
+  .feature-card p { font-size: 13px !important; color: var(--k-text-muted) !important; line-height: 1.55 !important; margin: 0 !important; }
+
+  .step-list { margin: 1.5rem 0; }
+  .step-item { display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: flex-start; }
+  .step-bubble {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--k-teal-light);
+    border: 1.5px solid var(--k-teal-mid);
+    color: var(--k-teal);
+    font-size: 12px;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content { flex: 1; min-width: 0; }
+  .step-content strong { display: block; font-size: 14.5px; font-weight: 500; color: var(--k-text); margin-bottom: 3px; }
+  .step-content span { font-size: 13.5px; color: var(--k-text-muted); line-height: 1.6; }
+
+  .callout {
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .callout.purple { background: var(--k-purple-light); border: 1px solid var(--k-purple-mid); }
+  .callout.teal { background: var(--k-teal-light); border: 1px solid var(--k-teal-mid); }
+  .callout.amber { background: var(--k-amber-light); border: 1px solid #FAC775; }
+  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout.purple .callout-icon { color: var(--k-purple); }
+  .callout.teal .callout-icon { color: var(--k-teal); }
+  .callout.amber .callout-icon { color: var(--k-amber); }
+  .callout p { font-size: 14px !important; line-height: 1.65 !important; margin: 0 !important; color: var(--k-text) !important; }
+  .callout p strong { font-weight: 500; }
+
+  .journey-line {
+    position: relative;
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+    border-left: 2px solid var(--k-border);
+  }
+  .journey-stop { position: relative; margin-bottom: 1.5rem; padding-left: 1rem; }
+  .journey-stop::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--k-purple);
+    border: 2px solid var(--k-white);
+    outline: 1.5px solid var(--k-purple-mid);
+  }
+  .journey-stop h3 { font-size: 14.5px; font-weight: 500; color: var(--k-text); margin-bottom: 3px; }
+  .journey-stop p { font-size: 13.5px !important; color: var(--k-text-muted) !important; line-height: 1.6 !important; margin: 0 !important; }
+
+  .faq-item { border-bottom: 1px solid var(--k-border); padding: 1rem 0; }
+  .faq-q { font-size: 15px; font-weight: 500; color: var(--k-text); margin-bottom: 6px; }
+  .faq-a { font-size: 14px; color: var(--k-text-muted); line-height: 1.7; }
+
+  .data-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 1.5rem 0; }
+  .data-table th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--k-text-muted);
+    padding: 8px 12px;
+    background: var(--k-gray-light);
+    border-bottom: 1px solid var(--k-border);
+  }
+  .data-table td { padding: 10px 12px; border-bottom: 1px solid var(--k-border); color: var(--k-text); vertical-align: top; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--k-gray-light); }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11.5px; font-weight: 500; }
+  .badge-purple { background: var(--k-purple-light); color: var(--k-purple); }
+  .badge-teal { background: var(--k-teal-light); color: #0F6E56; }
+  .badge-amber { background: var(--k-amber-light); color: var(--k-amber); }
+  .only-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--k-purple);
+    color: #fff;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: 5px;
+    vertical-align: middle;
+    letter-spacing: 0.3px;
+  }
+
+  .site-footer { background: var(--k-text); padding: 2rem; text-align: center; }
+  .footer-inner { max-width: 980px; margin: 0 auto; }
+  .footer-inner p { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
+  .footer-inner a { color: rgba(255,255,255,0.65); text-decoration: none; }
+
+  @media (max-width: 760px) {
+    .page-body { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    .hero h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">Kasper<span> ·</span> Staff Guide</div>
+    <div class="header-label">New Practice Onboarding</div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="Guide sections">
+  <div class="toc-inner">
+    <a href="#section-intro" class="toc-link"><span class="toc-num">1</span> What is Kasper?</a>
+    <a href="#section-journey" class="toc-link"><span class="toc-num">2</span> Patient journey</a>
+    <a href="#section-features" class="toc-link"><span class="toc-num">3</span> All features</a>
+    <a href="#section-daily" class="toc-link"><span class="toc-num">4</span> Daily workflow</a>
+    <a href="#section-faq" class="toc-link"><span class="toc-num">5</span> Common questions</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">New practice onboarding</span>
+    <h1>Getting started with <em>Kasper</em></h1>
+    <p class="hero-subtitle">Everything your front desk team needs to understand Kasper, navigate the patient journey, and get the most out of every feature — from the first phone call to final payment.</p>
+    <div class="hero-meta">
+      <div class="meta-chip"><span class="meta-chip-dot"></span> Built exclusively for Open Dental</div>
+      <div class="meta-chip"><span class="meta-chip-dot"></span> Front desk &amp; admin staff</div>
+      <div class="meta-chip"><span class="meta-chip-dot"></span> No technical background required</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <main class="content-main">
+
+    <!-- Section 1 -->
+    <section class="section" id="section-intro">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <h2>What is Kasper?</h2>
+      </div>
+
+      <p>Kasper is your practice's all-in-one platform, built specifically for offices running <strong>Open Dental</strong>. It replaces your phone system, reminders service, digital forms tool, payment processor, scheduling widget, and patient communication platform — consolidating everything into one place with a single login.</p>
+
+      <p>The core idea is <strong>supervised practice management</strong>: Kasper doesn't just automate tasks, it actively watches every step of the patient journey and alerts your team when something needs attention — a missing form, an unpaid balance, a gap in the schedule, a call that didn't go as it should have.</p>
+
+      <div class="callout purple">
+        <span class="callout-icon">💡</span>
+        <p><strong>Why it matters:</strong> Dental practices lose an average of <strong>9% of revenue</strong> to billing errors, missed follow-ups, and scheduling gaps. Kasper is designed to surface those issues while the patient is still in the building — before they become lost revenue.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-card-icon">📞</div>
+          <h3>Phone &amp; VoIP</h3>
+          <p>Full phone system with caller ID screen pops, call recording, IVR, voicemail, and AI summaries auto-filed to each patient's chart.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">📋</div>
+          <h3>Digital forms</h3>
+          <p>Paperless intake, consent forms, and e-signatures via iPad or secure link — all synced to Open Dental instantly.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">🔔</div>
+          <h3>Reminders</h3>
+          <p>Automated SMS and email reminders that reduce no-show rates by up to 35%. Confirmations update Open Dental automatically.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">💳</div>
+          <h3>KasperPay</h3>
+          <p>In-office terminals, manual card entry, saved cards, text-to-pay links, and payment plans — all posting to the Open Dental ledger in real time.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">🛡️</div>
+          <h3>Insurance verification</h3>
+          <p>Automated real-time eligibility checks before every appointment. Benefits, deductibles, and coverage written directly to the patient's chart.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">📅</div>
+          <h3>Online scheduling</h3>
+          <p>Patients book 24/7. Syncs instantly with Open Dental — no double entry, no missed appointments, no phone tag.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">👁️</div>
+          <h3>Intraday supervision</h3>
+          <p>Live color-coded dashboard of every patient in the office with real-time flags, wait timers, and status tracking from arrival to checkout.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">📊</div>
+          <h3>Revenue Leakage Protector</h3>
+          <p>Surfaces uncollected balances, failed payments, unallocated funds, and unscheduled treatment before they quietly disappear.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">🔍</div>
+          <h3>Opportunity Finder</h3>
+          <p>When a cancellation opens a gap, instantly matches it to patients with planned treatment — ranked by insurance benefits and reliability.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="section" id="section-journey">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <h2>The patient journey</h2>
+      </div>
+
+      <p>Kasper supports every touchpoint from the moment a new patient finds your practice online to the moment they've paid and received their follow-up. Here's what each step looks like from the front desk.</p>
+
+      <div class="journey-line">
+        <div class="journey-stop">
+          <h3>Search &amp; book</h3>
+          <p>Patients find your practice online and book through Kasper's scheduling widget — available on your website 24/7. The appointment lands directly in Open Dental. Kasper also sends automated review requests after visits to boost your Google visibility and bring in more new patients.</p>
+        </div>
+        <div class="journey-stop">
+          <h3>Forms sent automatically</h3>
+          <p>As soon as an appointment is scheduled, Kasper automatically sends the patient their intake forms via text and email. They can complete them at home before arriving, speeding up check-in. If a patient misses a call and no one answers, Kasper fires an automatic SMS to let them know someone will follow up.</p>
+        </div>
+        <div class="journey-stop">
+          <h3>Automated reminders</h3>
+          <p>Kasper sends customizable SMS and email appointment reminders on a schedule you control. When the patient confirms, Open Dental is updated automatically — no manual status change needed.</p>
+        </div>
+        <div class="journey-stop">
+          <h3>Insurance verification</h3>
+          <p>Kasper checks insurance eligibility automatically before each appointment and writes the results to the patient's Open Dental chart. Your team sees coverage details, deductibles, and benefit limits before the patient walks in — no last-minute surprises at checkout.</p>
+        </div>
+        <div class="journey-stop">
+          <h3>Arrival &amp; check-in</h3>
+          <p>The intraday dashboard shows every patient currently in the office as a color-coded card. At a glance: forms status, outstanding balance, hygiene due date, unscheduled treatment value, wait time, and time in office. Flags are color-coded — green means clear, red or yellow means act now.</p>
+        </div>
+        <div class="journey-stop">
+          <h3>Treatment plan &amp; consent</h3>
+          <p>Providers can present treatment plans digitally and capture patient e-signatures on an iPad or via a secure link sent to the patient's phone. Signed consent syncs to the Open Dental chart automatically.</p>
+        </div>
+        <div class="journey-stop">
+          <h3>Payment at checkout</h3>
+          <p>Collect payment via terminal (tap, chip, or swipe), manually entered card, saved card on file, or a text-to-pay link. KasperPay processes it securely and posts it to the Open Dental ledger in real time. There's also a Cash Discount option to pass the transaction fee to the patient or absorb it yourself.</p>
+        </div>
+        <div class="journey-stop">
+          <h3>Recall &amp; follow-up</h3>
+          <p>After the visit, Kasper automatically sends hygiene recall reminders, "use it or lose it" insurance benefit messages as year-end approaches, post-op instructions, birthday greetings, and review requests — all on autopilot based on patient criteria and events.</p>
+        </div>
+      </div>
+
+      <div class="callout teal">
+        <span class="callout-icon">✅</span>
+        <p><strong>The key difference:</strong> Most software tells you what happened. Kasper tells you what needs to happen right now — and gives you a one-click path to handle it before the patient leaves.</p>
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="section" id="section-features">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <h2>All features at a glance</h2>
+      </div>
+
+      <p>Every Kasper feature connects directly to Open Dental. The table below covers the full platform — including tools exclusive to Kasper that you won't find anywhere else.</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>What it does</th>
+            <th>Area</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Phones &amp; VoIP</strong></td>
+            <td>Complete phone system with desktop softphones, mobile app, hardware phones, IVR call trees, voicemail, call forwarding, and after-hours routing. Works from anywhere with an internet connection.</td>
+            <td><span class="badge badge-purple">Communication</span></td>
+          </tr>
+          <tr>
+            <td><strong>Call Intelligence</strong></td>
+            <td>AI transcribes and classifies every call by topic. Auto-writes a summary to the patient's Open Dental chart. Checks calls against your governance rules and flags when a standard wasn't met.</td>
+            <td><span class="badge badge-purple">Communication</span></td>
+          </tr>
+          <tr>
+            <td><strong>Two-Way Texting</strong></td>
+            <td>Send and receive texts from your office number in real time. Use it for appointment confirmations, quick patient questions, or payment links.</td>
+            <td><span class="badge badge-purple">Communication</span></td>
+          </tr>
+          <tr>
+            <td><strong>Missed Call Automations</strong></td>
+            <td>When a call goes unanswered, Kasper automatically texts the patient to let them know someone will follow up — so no lead slips through.</td>
+            <td><span class="badge badge-purple">Communication</span></td>
+          </tr>
+          <tr>
+            <td><strong>eFax</strong></td>
+            <td>Send and receive faxes digitally from within Kasper. No physical fax machine needed.</td>
+            <td><span class="badge badge-purple">Communication</span></td>
+          </tr>
+          <tr>
+            <td><strong>Automated Reminders</strong></td>
+            <td>SMS and email appointment reminders on a customizable schedule. Patient confirmations update the appointment status in Open Dental automatically. Reduces no-show rates by up to 35%.</td>
+            <td><span class="badge badge-purple">Patient Experience</span></td>
+          </tr>
+          <tr>
+            <td><strong>Digital Forms</strong></td>
+            <td>Paperless intake sent automatically when an appointment is scheduled. Patients complete at home or on an iPad chairside. HIPAA-compliant. All data syncs to Open Dental instantly.</td>
+            <td><span class="badge badge-purple">Patient Experience</span></td>
+          </tr>
+          <tr>
+            <td><strong>Online Scheduling</strong></td>
+            <td>24/7 self-booking with instant Open Dental sync. Supports schedule blockouts, departmental scheduling, and operatory management.</td>
+            <td><span class="badge badge-purple">Patient Experience</span></td>
+          </tr>
+          <tr>
+            <td><strong>Treatment Plans</strong></td>
+            <td>Present treatment plans digitally and capture patient e-signatures remotely or chairside. Signed consent syncs to the Open Dental chart automatically.</td>
+            <td><span class="badge badge-purple">Patient Experience</span></td>
+          </tr>
+          <tr>
+            <td><strong>Insurance Verification</strong></td>
+            <td>Automated eligibility checks before each appointment. Shows benefits, deductibles, and coverage limits — written directly to the patient's Open Dental chart.</td>
+            <td><span class="badge badge-purple">Patient Experience</span></td>
+          </tr>
+          <tr>
+            <td><strong>Email &amp; Text Campaigns</strong></td>
+            <td>Bulk SMS, email, and MMS campaigns triggered by patient criteria or events. Hygiene recalls, birthday greetings, post-op instructions, "use it or lose it" insurance reminders, and review requests — all automated.</td>
+            <td><span class="badge badge-purple">Patient Experience</span></td>
+          </tr>
+          <tr>
+            <td><strong>KasperPay</strong></td>
+            <td>Integrated payments via terminal, manual card entry, saved card, or text-to-pay link. Auto-posts to the Open Dental ledger. Supports payment plans, void/refund, and a Cash Discount option. PCI-DSS Level 1 compliant.</td>
+            <td><span class="badge badge-teal">Revenue</span></td>
+          </tr>
+          <tr>
+            <td><strong>Revenue Cycle Management</strong></td>
+            <td>Tracks missed payments and rejected cards. Automated system retries failed payments and follows up with patients. End-of-day report summarizes every successful and failed auto-payment.</td>
+            <td><span class="badge badge-teal">Revenue</span></td>
+          </tr>
+          <tr>
+            <td><strong>Opportunity Finder</strong> <span class="only-tag">Only in Kasper</span></td>
+            <td>When a cancellation opens a gap, scans Open Dental for patients with matching unscheduled treatment. Results are ranked by treatment value, remaining insurance benefits, and appointment reliability. One click to call or text the patient.</td>
+            <td><span class="badge badge-teal">Revenue</span></td>
+          </tr>
+          <tr>
+            <td><strong>Revenue Leakage Protector</strong> <span class="only-tag">Only in Kasper</span></td>
+            <td>Surfaces uncollected balances, unallocated payments, pending insurance claims, bad write-offs, and lapsed recall patients on a single dashboard — each with a clear next step.</td>
+            <td><span class="badge badge-teal">Revenue</span></td>
+          </tr>
+          <tr>
+            <td><strong>Intraday Supervision</strong> <span class="only-tag">Only in Kasper</span></td>
+            <td>Live color-coded view of every patient in the office. Flags missing forms, outstanding balances, unscheduled treatment, hygiene overdue, and wait time — all before the patient leaves the building.</td>
+            <td><span class="badge badge-amber">Supervision</span></td>
+          </tr>
+          <tr>
+            <td><strong>Event-Based Dentistry</strong> <span class="only-tag">Only in Kasper</span></td>
+            <td>Define your office SOPs as rules. Kasper detects events, flags violations, creates tasks, and notifies the right person automatically. End-of-day email summarizes call compliance and payment failures.</td>
+            <td><span class="badge badge-amber">Supervision</span></td>
+          </tr>
+          <tr>
+            <td><strong>Morning Huddle</strong></td>
+            <td>A 3-day view of practice performance pulled live from Open Dental — production goals, scheduled production per provider, and open flags. Start every day informed.</td>
+            <td><span class="badge badge-amber">Management</span></td>
+          </tr>
+          <tr>
+            <td><strong>Analytics</strong></td>
+            <td>Track provider production per hour, set custom goals, and benchmark against industry standards — all from Open Dental data.</td>
+            <td><span class="badge badge-amber">Management</span></td>
+          </tr>
+          <tr>
+            <td><strong>Team Chat &amp; Task Manager</strong></td>
+            <td>Internal group and direct messaging between team members. Task assignment and tracking — integrated with governance rules so flagged issues generate tasks automatically.</td>
+            <td><span class="badge badge-amber">Management</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mobile App</strong></td>
+            <td>Answer calls, text patients, check the schedule, chat with the team, and get real-time practice notifications from anywhere.</td>
+            <td><span class="badge badge-amber">Management</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="section" id="section-daily">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <h2>Your daily workflow</h2>
+      </div>
+
+      <p>Here's a practical breakdown of what a typical day looks like using Kasper at the front desk.</p>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-bubble">AM</div>
+          <div class="step-content">
+            <strong>Morning Huddle</strong>
+            <span>Open Kasper and review the Morning Huddle dashboard. It shows today's production goal, scheduled production by provider, confirmed vs. unconfirmed appointments, and any open flags from yesterday — unpaid balances, incomplete forms, unresolved tasks.</span>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-bubble">1</div>
+          <div class="step-content">
+            <strong>Review insurance verification</strong>
+            <span>Kasper runs eligibility checks automatically before appointments. Check the dashboard for any red or yellow flags — coverage issues, inactive insurance, waiting periods — and resolve them before the patient arrives so checkout has no surprises.</span>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-bubble">2</div>
+          <div class="step-content">
+            <strong>Check form submissions</strong>
+            <span>Forms are sent to patients automatically when they schedule. Confirm today's patients have submitted. If not, send a quick text from Kasper with a new link — they can fill it out on their phone while they wait.</span>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-bubble">3</div>
+          <div class="step-content">
+            <strong>Handle calls &amp; texts</strong>
+            <span>Incoming calls trigger a screen pop with the patient's full Open Dental context — next appointment, last visit, balance, hygiene due date, and unscheduled treatment. After the call, Kasper's AI writes a summary to their chart automatically. Respond to texts from the Kasper messaging panel.</span>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-bubble">4</div>
+          <div class="step-content">
+            <strong>Monitor the intraday dashboard</strong>
+            <span>Keep the dashboard open all day. Patient cards are color-coded — act on any flag before the patient moves to checkout. The dashboard also shows how long each patient has been waiting and their total time in office, so you can spot bottlenecks early.</span>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-bubble">5</div>
+          <div class="step-content">
+            <strong>Fill cancellations with Opportunity Finder</strong>
+            <span>When a cancellation creates a gap, open Opportunity Finder immediately. Select the treatment type that fits the slot — Kasper shows you a ranked list of patients to call or text with one click. Don't leave the chair empty.</span>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-bubble">6</div>
+          <div class="step-content">
+            <strong>Process checkout &amp; payments</strong>
+            <span>Collect via terminal, saved card, or send a text-to-pay link. KasperPay posts the payment to Open Dental immediately. If the patient needs a payment plan, set it up directly in Kasper — automated charges and ledger posting are handled from there.</span>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-bubble">PM</div>
+          <div class="step-content">
+            <strong>End-of-day sweep</strong>
+            <span>Review the Revenue Leakage Protector for unallocated payments, pending claims, and open balances. Check for failed auto-payments from the payment transactions report and send text-to-pay links to those patients. Close out any open tasks before logging off.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout amber">
+        <span class="callout-icon">⚠️</span>
+        <p><strong>Remember:</strong> Kasper and Open Dental sync in real time, two ways. Forms submitted, payments posted, appointments booked, call summaries filed — it all writes to Open Dental automatically. You never need to enter anything twice.</p>
+      </div>
+    </section>
+
+    <!-- Section 5 -->
+    <section class="section" id="section-faq">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <h2>Common questions</h2>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Do I need to update Open Dental separately after using Kasper?</div>
+        <div class="faq-a">No. Kasper has a two-way real-time sync with Open Dental. Appointments, forms, payments, call summaries, and insurance verification data all flow automatically between the two systems. Nothing needs to be entered twice.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens if a patient doesn't fill out their forms before arriving?</div>
+        <div class="faq-a">You can send a new form link directly from Kasper. The patient fills it out on their phone or on an iPad in the waiting room. The submission syncs to their Open Dental chart the moment they hit submit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">A patient called but no one was available to answer. What happens?</div>
+        <div class="faq-a">Kasper can automatically send the patient an SMS letting them know their call was received and that someone will follow up. You can configure this missed-call automation in your settings so no inquiry slips through.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I fill a last-minute cancellation?</div>
+        <div class="faq-a">Open Opportunity Finder, select the treatment type that fits the open slot, and Kasper pulls a ranked list of patients with matching unscheduled treatment — sorted by insurance benefits, treatment value, and appointment reliability. Call or text them directly from the interface with one click.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">A patient's auto-payment card was declined. What do I do?</div>
+        <div class="faq-a">Kasper flags it automatically in the Revenue Cycle Management dashboard and sends you a daily failed-payments report. You can retry the card from the dashboard or send the patient a text-to-pay link so they can update their payment method and pay immediately from their phone.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">The intraday dashboard shows color-coded flags — what do the colors mean?</div>
+        <div class="faq-a">The dashboard uses color coding to highlight actionable items at a glance: overdue bills, incomplete paperwork, hygiene reminders due, and more. Red means act now before the patient leaves; yellow means review. Your onboarding specialist will walk you through the specific color scheme for your practice's configuration.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I use Kasper on my phone when away from the office?</div>
+        <div class="faq-a">Yes. The Kasper mobile app lets you answer calls, text patients, check the schedule, chat with the team, and receive real-time practice notifications from anywhere — useful for office managers and providers who are frequently away from the front desk.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do review requests work?</div>
+        <div class="faq-a">Kasper sends automated review request messages to patients after their appointments. You control the timing and message content. More reviews improve your practice's visibility in Google search results, helping new patients find you. You can also run one-time review campaigns to any segment of your patient list.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if something isn't working?</div>
+        <div class="faq-a">Contact Kasper support at <a href="mailto:support@meetkasper.com">support@meetkasper.com</a> or call <a href="tel:8883128245">(888) 312-8245</a>. When you reach out, include the patient name or account if relevant, a description of what you expected vs. what happened, and a screenshot if possible — this gets your issue resolved faster.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h4>Quick reference</h4>
+      <ul class="tip-list">
+        <li>Kasper &amp; Open Dental sync in real time — no double entry ever</li>
+        <li>Forms send automatically when an appointment is scheduled</li>
+        <li>Patient cards on the intraday dashboard are color-coded for quick action</li>
+        <li>Missed calls auto-text patients so no lead is lost</li>
+        <li>Calls are transcribed and auto-filed to patient charts</li>
+        <li>Payments post to the Open Dental ledger immediately</li>
+        <li>Insurance verification runs automatically before each appointment</li>
+        <li>Use Opportunity Finder the moment a cancellation comes in</li>
+        <li>End-of-day payment report flags every failed auto-payment</li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h4>Only in Kasper</h4>
+      <ul class="tip-list">
+        <li>Opportunity Finder — fill cancellations with one click</li>
+        <li>Revenue Leakage Protector — catch everything before month-end</li>
+        <li>Intraday Supervision — real-time color-coded patient dashboard</li>
+        <li>Event-Based Dentistry — automated SOP enforcement</li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h4>Key numbers</h4>
+      <ul class="tip-list">
+        <li><strong>35%</strong> reduction in no-shows with automated reminders</li>
+        <li><strong>9%</strong> average revenue lost to leakage industry-wide</li>
+        <li><strong>$700/mo</strong> average savings from consolidating subscriptions</li>
+        <li><strong>1.2M+</strong> patients served nationally</li>
+        <li><strong>240k+</strong> appointments confirmed via Kasper</li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h4>Kasper contacts</h4>
+      <div class="contact-row">
+        <div class="contact-item">📧 General: <a href="mailto:hello@meetkasper.com">hello@meetkasper.com</a></div>
+        <div class="contact-item">🛠️ Support: <a href="mailto:support@meetkasper.com">support@meetkasper.com</a></div>
+        <div class="contact-item">📞 Phone: <a href="tel:8883128245">(888) 312-8245</a></div>
+        <div class="contact-item">🌐 <a href="https://meetkasper.com" target="_blank">meetkasper.com</a></div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>Kasper · New Practice Onboarding Guide · Supervised Practice Management. Protected Revenue.</p>
+    <p><a href="https://meetkasper.com" target="_blank">meetkasper.com</a> &nbsp;·&nbsp; (888) 312-8245 &nbsp;·&nbsp; support@meetkasper.com</p>
+  </div>
+</footer>
+
+</body>
+</html>
