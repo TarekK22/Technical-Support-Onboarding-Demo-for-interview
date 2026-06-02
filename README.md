@@ -17,14 +17,12 @@ This repository contains my mock onboarding documentation and technical troubles
 
 ---
 
----
-
 ### 📖 Project Documentation
 
 Open the sections below to read the full markdown guides right here on the homepage.
 
 <details>
-<summary>`▶ CLICK TO EXPAND: New Practice Onboarding Guide`</summary>
+<summary>▶ CLICK TO EXPAND: New Practice Onboarding Guide`</summary>
 
 ## Welcome to Kasper — New Practice Onboarding Guide
 
