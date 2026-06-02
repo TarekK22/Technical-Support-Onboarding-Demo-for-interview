@@ -13,8 +13,6 @@ Click on the sections below to expand and read the full guides right here on the
 <details>
 <summary><b>Click to expand: New Practice Onboarding Guide</b></summary>
 
-### Welcome to Kasper
-
 ONBOARDING GUIDE
 
 *Written as a Kasper onboarding specialist welcoming a new dental practice to the platform.*
@@ -25,8 +23,6 @@ ONBOARDING GUIDE
 ### New Practice Onboarding Guide
 
 ---
-
-Welcome aboard. This guide covers everything you need to get your practice running on Kasper — from connecting Open Dental to making your first phone call through the system. We'll move through setup in the order that matters: foundation first, then communication, then supervision and revenue tools.
 
 Before we start: Kasper syncs with Open Dental in real time. Every action you take in Kasper writes back to Open Dental automatically. You will not need to enter anything twice.
 
