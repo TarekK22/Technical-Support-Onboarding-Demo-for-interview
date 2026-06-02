@@ -17,10 +17,14 @@ This repository contains my mock onboarding documentation and technical troubles
 
 ---
 
-Click on the sections below to expand and read the full guides right here on the homepage.
+---
+
+### 📖 Project Documentation
+
+Open the sections below to read the full markdown guides right here on the homepage.
 
 <details>
-<summary><b>Click to expand: New Practice Onboarding Guide</b></summary>
+<summary>`▶ CLICK TO EXPAND: New Practice Onboarding Guide`</summary>
 
 ## Welcome to Kasper — New Practice Onboarding Guide
 
@@ -56,7 +60,7 @@ Add every staff member who will use Kasper:
 - Assign roles: Front Desk, Office Manager, Provider, Admin
 - Each role controls what the user can see and do (e.g., providers see clinical context; front desk sees scheduling and billing)
 
-There is no per-user fee. Add everyone who needs access.
+ There is no per-user fee. Add everyone who needs access.
 
 **Tip for office managers:** Set yourself up with Admin access. This gives you visibility into call intelligence reports, governance alerts, and the revenue leakage dashboard that other roles don't see by default.
 
@@ -319,7 +323,7 @@ When contacting support, include: the patient name or account number (if patient
 </details>
 
 <details>
-<summary><b>Click to expand: Technical Support Troubleshooting Reference</b></summary>
+<summary>`▶ CLICK TO EXPAND: Technical Support Troubleshooting Reference`</summary>
 
 ## Kasper Support Troubleshooting Reference
 
