@@ -1,14 +1,19 @@
 # Kasper Technical Support & Onboarding Portfolio
 
+
 This repository contains my mock onboarding documentation and technical troubleshooting reference sheet for the Kasper platform. 
 
+### 🌐 Live Interactive Dashboards
+* [Launch Live New Practice Onboarding Guide (HTML Render)](https://cdn.jsdelivr.net/gh/TarekK22/Technical-Support-Onboarding-Demo-for-interview@main/examples/KasperOnboardingIntro.html)
+* [Launch Live Technical Support Troubleshooting Reference (HTML Render)](https://cdn.jsdelivr.net/gh/TarekK22/Technical-Support-Onboarding-Demo-for-interview@main/examples/KasperSupportReference.html)
+
+---
 Click on the sections below to expand and read the full guides right here on the homepage.
 
 <details>
 <summary><b>Click to expand: New Practice Onboarding Guide</b></summary>
 
 ### Welcome to Kasper
-### New Practice Onboarding Guide
 
 ONBOARDING GUIDE
 
