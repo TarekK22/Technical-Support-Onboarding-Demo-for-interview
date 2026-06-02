@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kasper — Technical Support Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0F1117;
+    --surface: #181C26;
+    --surface-2: #1E2232;
+    --border: #2A2F42;
+    --border-light: #343A52;
+    --purple: #7C6EF5;
+    --purple-dim: #3D3680;
+    --purple-glow: rgba(124,110,245,0.12);
+    --green: #3DD68C;
+    --green-dim: #1A4D35;
+    --amber: #F5A623;
+    --amber-dim: #4D3410;
+    --red: #F56B6B;
+    --red-dim: #4D2020;
+    --text: #E4E6F0;
+    --text-muted: #7A7F96;
+    --text-dim: #4A4F66;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .header-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--purple);
+    letter-spacing: 0.5px;
+  }
+  .header-divider { width: 1px; height: 16px; background: var(--border); }
+  .header-title {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+  .header-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--purple-dim);
+    color: var(--purple);
+    letter-spacing: 0.5px;
+    border: 1px solid var(--purple-dim);
+  }
+
+  /* Layout */
+  .container { max-width: 900px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+  .page-intro {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-intro h1 {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+  .page-intro p { font-size: 13px; color: var(--text-muted); max-width: 560px; }
+
+  /* Category group */
+  .category { margin-bottom: 2.5rem; }
+  .category-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .category-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Issue card */
+  .issue-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .issue-card:hover { border-color: var(--border-light); }
+
+  .issue-trigger {
+    display: grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items: start;
+    gap: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+  }
+  .issue-trigger::-webkit-details-marker { display: none; }
+
+  .issue-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  .issue-symptom {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.45;
+  }
+
+  .issue-arrow {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 2px;
+    transition: transform 0.15s;
+    flex-shrink: 0;
+  }
+  details[open] .issue-arrow { transform: rotate(90deg); }
+
+  /* Expanded body */
+  .issue-body {
+    border-top: 1px solid var(--border);
+    padding: 14px 14px 14px 46px;
+    background: var(--surface-2);
+  }
+
+  .check-list { list-style: none; }
+  .check-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 5px 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    border-bottom: 1px solid var(--border);
+  }
+  .check-list li:last-child { border-bottom: none; }
+  .check-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    margin-top: 2px;
+    min-width: 18px;
+  }
+  .check-list li strong { color: var(--text); font-weight: 500; }
+
+  /* Inline code */
+  code {
+    font-family: var(--mono);
+    font-size: 11px;
+    background: rgba(124,110,245,0.1);
+    color: var(--purple);
+    padding: 1px 5px;
+    border-radius: 3px;
+    border: 1px solid var(--purple-dim);
+  }
+
+  /* Note block */
+  .note {
+    margin-top: 10px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1.5;
+    display: flex;
+    gap: 7px;
+    align-items: flex-start;
+  }
+  .note.amber { background: var(--amber-dim); border: 1px solid rgba(245,166,35,0.25); color: #e0a830; }
+  .note.green { background: var(--green-dim); border: 1px solid rgba(61,214,140,0.2); color: #3DD68C; }
+  .note.red { background: var(--red-dim); border: 1px solid rgba(245,107,107,0.2); color: #f09090; }
+  .note-icon { flex-shrink: 0; }
+
+  /* Escalate tag */
+  .escalate {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--red-dim);
+    color: var(--red);
+    border: 1px solid rgba(245,107,107,0.2);
+    margin-top: 8px;
+  }
+
+  /* Footer */
+  .page-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+  }
+  .page-footer span { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
+  .page-footer a { color: var(--purple); text-decoration: none; font-family: var(--mono); font-size: 11px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-logo">KASPER</div>
+    <div class="header-divider"></div>
+    <div class="header-title">support-reference.md</div>
+  </div>
+  <div class="header-badge">INTERNAL</div>
+</div>
+
+<div class="container">
+
+  <div class="page-intro">
+    <h1>Technical Support — Troubleshooting Reference</h1>
+    <p>Common issues, likely causes, and step-by-step checks. All Kasper features sync with Open Dental — most tickets trace to either a configuration gap or a data issue in Open Dental rather than Kasper itself.</p>
+  </div>
+
+  <!-- SCHEDULING & OPPORTUNITY FINDER -->
+  <div class="category">
+    <div class="category-label">Scheduling &amp; Opportunity Finder</div>
+
+    <details class="issue-card">
+      <summary class="issue-trigger">
+        <span class="issue-num">01</span>
+        <span class="issue-symptom">Opportunity Finder shows no matches for an open slot</span>
+        <span class="issue-arrow">▶</span>
+      </summary>
+      <div class="issue-body">
+        <ul class="check-list">
+          <li><span class="check-num">1.</span><span>Confirm treatment plans are entered in Open Dental with status <strong>Treatment Planned</strong> — not <em>Completed</em>, <em>Rejected</em>, or left blank.</span></li>
+          <li><span class="check-num">2.</span><span>Check that the treatment type selected in Opportunity Finder matches the procedure codes on the patient's plan. A mismatch returns no results.</span></li>
+          <li><span class="check-num">3.</span><span>Confirm the patient's preferred provider and operatory in Open Dental aren't restricting the match. Widen filters if needed.</span></li>
+          <li><span class="check-num">4.</span><span>Verify that the Open Dental sync is active under <code>Settings → Integrations</code>. If the last sync timestamp is stale, treatment plan data may not be current.</span></li>
+        </ul>
+        <div class="note amber"><span class="note-icon">⚠</span> If treatment plans are correctly entered and syncing but still not appearing, collect the patient name, procedure code, and a screenshot and escalate.</div>
+      </div>
+    </details>
+
+    <details class="issue-card">
+      <summary class="issue-trigger">
+        <span class="issue-num">02</span>
+        <span class="issue-symptom">Online booking shows no available slots even when the schedule has openings</span>
+        <span class="issue-arrow">▶</span>
+      </summary>
+      <div class="issue-body">
+        <ul class="check-list">
+          <li><span class="check-num">1.</span><span>Check <code>Settings → Online Scheduling</code> and confirm the appointment type the patient is trying to book is enabled for online booking.</span></li>
+          <li><span class="check-num">2.</span><span>Look for schedule blockouts in Open Dental covering that date range — blockouts suppress available slots in the widget.</span></li>
+          <li><span class="check-num">3.</span><span>Confirm the provider or operatory associated with that appointment type is marked as available in the Online Scheduling settings.</span></li>
+          <li><span class="check-num">4.</span><span>Verify the Open Dental sync is live. If the schedule in Kasper doesn't reflect recent Open Dental changes, a sync lag may be hiding available slots.</span></li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <!-- PHONE & CALL INTELLIGENCE -->
+  <div class="category">
+    <div class="category-label">Phone &amp; Call Intelligence</div>
+
+    <details class="issue-card">
+      <summary class="issue-trigger">
+        <span class="issue-num">03</span>
+        <span class="issue-symptom">Caller ID screen pop not appearing when a patient calls</span>
+        <span class="issue-arrow">▶</span>
+      </summary>
+      <div class="issue-body">
+        <ul class="check-list">
+          <li><span class="check-num">1.</span><span>Confirm the VoIP phone or softphone is active and the user's extension is assigned in <code>Settings → Team Management</code>.</span></li>
+          <li><span class="check-num">2.</span><span>Check that the patient's phone number in Open Dental matches the inbound caller ID exactly — including country code format. A format mismatch prevents the lookup from matching.</span></li>
+          <li><span class="check-num">3.</span><span>If the caller is a new patient with no Open Dental record, no pop will appear — this is expected behavior. A new patient record should be created during or after the call.</span></li>
+          <li><span class="check-num">4.</span><span>Confirm the Kasper desktop app or browser tab is open and in focus on the receiving workstation. The pop requires an active Kasper session.</span></li>
+        </ul>
+        <div class="note amber"><span class="note-icon">⚠</span> If pops worked previously and stopped, check whether a VoIP configuration change or firewall update occurred recently — these are the most common causes of a sudden regression.</div>
+      </div>
+    </details>
+
+    <details class="issue-card">
+      <summary class="issue-trigger">
+        <span class="issue-num">04</span>
+        <span class="issue-symptom">Call Intelligence not transcribing or summarizing calls</span>
+        <span class="issue-arrow">▶</span>
+      </summary>
+      <div class="issue-body">
+        <ul class="check-list">
+          <li><span class="check-num">1.</span><span>Confirm the Call AI add-on is active on this account under <code>Settings → Billing</code>. Call Intelligence is a separately priced module — it won't transcribe if not enabled.</span></li>
+          <li><span class="check-num">2.</span><span>Check that call recording is turned on for the relevant extensions. Transcription requires a recorded call — no recording means no transcript.</span></li>
+          <li><span class="check-num">3.</span><span>Transcription processes after the call ends — there is a short delay (typically under a few minutes). If the summary is missing an hour or more after the call, proceed to the next step.</span></li>
+          <li><span class="check-num">4.</span><span>Very short calls (under 10 seconds) may not generate a summary. Check the call duration in the call log.</span></li>
+        </ul>
+        <div class="note red"><span class="note-icon">!</span> If call recording is confirmed on and summaries are consistently missing across multiple calls, escalate with the affected call log IDs.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- FORMS -->
+  <div class="category">
+    <div class="category-label">Digital Forms</div>
+
+    <details class="issue-card">
+      <summary class="issue-trigger">
+        <span class="issue-num">05</span>
+        <span class="issue-symptom">Patient submitted a form but it's not showing in Open Dental</span>
+        <span class="issue-arrow">▶</span>
+      </summary>
+      <div class="issue-body">
+        <ul class="check-list">
+          <li><span class="check-num">1.</span><span>In Kasper, go to the patient's record and confirm the form shows status <strong>Submitted</strong> — not <em>Sent</em> or <em>Pending</em>. If still Pending, the patient may not have completed all required fields.</span></li>
+          <li><span class="check-num">2.</span><span>Check the Open Dental sync status in <code>Settings → Integrations</code>. A sync delay or disconnection will hold form data in Kasper without pushing it across.</span></li>
+          <li><span class="check-num">3.</span><span>Confirm the form is mapped to the correct patient record. If a form was submitted via a generic link without pre-population, it may have created a duplicate or unmatched record.</span></li>
+          <li><span class="check-num">4.</span><span>Refresh Open Dental on the workstation — data may have synced but not yet appeared in the current view.</span></li>
+        </ul>
+        <div class="note green"><span class="note-icon">✓</span> As a temporary fix while investigating, staff can manually enter the patient's information from the Kasper submission view into Open Dental to unblock the appointment.</div>
+      </div>
+    </details>
+
+    <details class="issue-card">
+      <summary class="issue-trigger">
+        <span class="issue-num">06</span>
+        <span class="issue-symptom">Patient says they never received their form link</span>
+        <span class="issue-arrow">▶</span>
+      </summary>
+      <div class="issue-body">
+        <ul class="check-list">
+          <li><span class="check-num">1.</span><span>Check the patient's contact details in Open Dental — confirm the mobile number and email are correct and not blank.</span></li>
+          <li><span class="check-num">2.</span><span>In Kasper, open the patient's record and check the form send log. Confirm a send was attempted and note whether it shows <em>Delivered</em> or <em>Failed</em>.</span></li>
+          <li><span class="check-num">3.</span><span>Ask the patient to check their SMS spam folder or email junk folder — automated messages are sometimes filtered.</span></li>
+          <li><span class="check-num">4.</span><span>Resend the form link manually from Kasper. If the patient is in the office, use the iPad fallback to complete forms chairside.</span></li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <!-- INSURANCE VERIFICATION -->
+  <div class="category">
+    <div class="category-label">Insurance Verification</div>
+
+    <details class="issue-card">
+      <summary class="issue-trigger">
+        <span class="issue-num">07</span>
+        <span class="issue-symptom">Insurance verification returning an error or no results</span>
+        <span class="issue-arrow">▶</span>
+      </summary>
+      <div class="issue-body">
+        <ul class="check-list">
+          <li><span class="check-num">1.</span><span>Open the patient's insurance record in Open Dental and confirm all required fields are filled: <strong>carrier name, subscriber ID, group number, and date of birth</strong>. Missing any one of these will cause the eligibility check to fail.</span></li>
+          <li><span class="check-num">2.</span><span>Check whether the carrier is supported for automated verification. Some smaller carriers require a manual call — Kasper will indicate this if the carrier isn't in the network.</span></li>
+          <li><span class="check-num">3.</span><span>Confirm the patient's plan isn't expired or in a waiting period — the insurer may return a valid response that reads as inactive coverage.</span></li>
+          <li><span class="check-num">4.</span><span>If the patient has secondary insurance, make sure both plans are entered in Open Dental. Kasper verifies both when available.</span></li>
+        </ul>
+        <div class="note amber"><span class="note-icon">⚠</span> If the carrier is supported and fields are complete but verification still fails consistently, escalate with the carrier name and patient subscriber ID (redacted for privacy).</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- PAYMENTS -->
+  <div class="category">
+    <div class="category-label">Payments &amp; KasperPay</div>
+
+    <details class="issue-card">
+      <summary class="issue-trigger">
+        <span class="issue-num">08</span>
+        <span class="issue-symptom">Payment processed but not posting to the Open Dental ledger</span>
+        <span class="issue-arrow">▶</span>
+      </summary>
+      <div class="issue-body">
+        <ul class="check-list">
+          <li><span class="check-num">1.</span><span>Check the Open Dental sync status in <code>Settings → Integrations</code>. A broken sync connection will hold KasperPay transactions without posting them.</span></li>
+          <li><span class="check-num">2.</span><span>Confirm the user who processed the payment has ledger-write permissions in Open Dental. Permissions errors silently block posting without showing an error in Kasper.</span></li>
+          <li><span class="check-num">3.</span><span>Open the payment in KasperPay's transaction log and check whether it shows <strong>Posted</strong> or <strong>Pending Allocation</strong>. Pending Allocation means the payment arrived but couldn't be mapped to a procedure — this usually happens when procedure codes are missing or mismatched in Open Dental.</span></li>
+          <li><span class="check-num">4.</span><span>Refresh Open Dental on the workstation — the ledger may have updated but the local view hasn't refreshed yet.</span></li>
+        </ul>
+        <div class="note red"><span class="note-icon">!</span> Do not process a second payment before confirming the first didn't post — this risks double-charging the patient. Verify the transaction log in KasperPay first.</div>
+      </div>
+    </details>
+
+    <details class="issue-card">
+      <summary class="issue-trigger">
+        <span class="issue-num">09</span>
+        <span class="issue-symptom">Auto-payment on a payment plan failed and patient wasn't notified</span>
+        <span class="issue-arrow">▶</span>
+      </summary>
+      <div class="issue-body">
+        <ul class="check-list">
+          <li><span class="check-num">1.</span><span>Check the end-of-day payment transactions report in Kasper — failed auto-payments should appear here. If the report wasn't reviewed, the failure may have gone unnoticed.</span></li>
+          <li><span class="check-num">2.</span><span>Confirm the patient's mobile number in Open Dental is correct. Kasper sends an automatic text-to-pay follow-up on failed payments — a wrong number means the message never reached them.</span></li>
+          <li><span class="check-num">3.</span><span>Check whether the patient's card on file has expired. Open the payment plan in Kasper and review the card expiry date.</span></li>
+          <li><span class="check-num">4.</span><span>Manually send the patient a text-to-pay link from their Kasper account record so they can update their payment method and settle the balance immediately.</span></li>
+        </ul>
+        <div class="note green"><span class="note-icon">✓</span> Recommend the practice review their end-of-day payment report daily — this is the fastest way to catch failed charges before they compound.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- SYNC & OPEN DENTAL -->
+  <div class="category">
+    <div class="category-label">Open Dental Sync</div>
+
+    <details class="issue-card">
+      <summary class="issue-trigger">
+        <span class="issue-num">10</span>
+        <span class="issue-symptom">Kasper data appears out of date or not reflecting recent Open Dental changes</span>
+        <span class="issue-arrow">▶</span>
+      </summary>
+      <div class="issue-body">
+        <ul class="check-list">
+          <li><span class="check-num">1.</span><span>Go to <code>Settings → Integrations</code> and check the last successful sync timestamp. If it's more than a few minutes old during business hours, the connection may have dropped.</span></li>
+          <li><span class="check-num">2.</span><span>Confirm the Open Dental server is running and reachable on the practice's network. If the server was restarted or updated, the Kasper connection may need to be re-established.</span></li>
+          <li><span class="check-num">3.</span><span>Check whether the practice recently updated their Open Dental version. Major updates occasionally require a Kasper re-integration — contact support to confirm compatibility.</span></li>
+          <li><span class="check-num">4.</span><span>If the practice uses a VPN, confirm it's active on the server hosting Open Dental. A dropped VPN severs the Kasper connection without an obvious error.</span></li>
+        </ul>
+        <div class="escalate">⬆ Escalate if sync has been broken for more than 15 minutes during business hours</div>
+      </div>
+    </details>
+
+  </div>
+
+  <div class="page-footer">
+    <span>kasper-support-reference · v1.0 · internal use only</span>
+    <a href="mailto:support@meetkasper.com">support@meetkasper.com</a>
+  </div>
+
+</div>
+</body>
+</html>
